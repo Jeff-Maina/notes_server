@@ -1,13 +1,25 @@
 import express, { Express, Request, Response } from 'express';
-import dotenv from 'dotenv'
+const cors = require('cors')
+const dotenv = require('dotenv');
+import "./database/connection"
+
+dotenv.config({
+  path: '../.env'
+})
+
+
+import bodyParser from 'body-parser';
 const routes = require('./routes')
 
-dotenv.config()
+
+const port = Number(process.env.PORT)
 
 const app: Express = express();
-const port: number = 3000
-
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(cors())
 app.use('/v1', routes)
+
 
 app.listen(port, () => {
   console.log('listening on port ' + port);

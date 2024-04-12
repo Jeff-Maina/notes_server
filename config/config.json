@@ -1,23 +1,23 @@
 {
   "development": {
     "username": "notes",
-    "password": "notes_password",
+    "password": "notespassword",
     "database": "notes_server",
-    "host": "127.0.0.1",
+    "host": "localhost",
     "dialect": "postgres"
   },
   "test": {
     "username": "notes",
     "password": "notespassword",
     "database": "database_test",
-    "host": "127.0.0.1",
+    "host": "localhost",
     "dialect": "postgres"
   },
   "production": {
     "username": "notes",
     "password": "notespassword",
     "database": "database_production",
-    "host": "127.0.0.1",
+    "host": "localhost",
     "dialect": "postgres"
   }
 }

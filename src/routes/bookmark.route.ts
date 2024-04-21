@@ -7,5 +7,6 @@ const router: Router = express.Router();
 
 router.get('/all', verifyAuth, bookmmarkController.getBookmarks)
 router.post('/create', verifyAuth, bookmmarkController.createBookmark)
+router.delete('/delete/:id', verifyAuth, bookmmarkController.deleteBookmark)
 
 module.exports = router

@@ -3,14 +3,11 @@ import {
     Column,
     Model,
     DataType,
-    Unique,
     CreatedAt,
     UpdatedAt,
-    IsEmail,
-    Length,
     ForeignKey,
-    Is,
-    BelongsTo
+    BelongsTo,
+    AllowNull
 } from 'sequelize-typescript'
 import User from './user';
 
@@ -18,13 +15,15 @@ import User from './user';
 @Table
 class Bookmark extends Model {
 
-
+    @AllowNull(false)
     @Column(DataType.STRING)
     declare websiteName: string;
 
+    @AllowNull(false)
     @Column(DataType.STRING)
     declare websiteImage: string;
 
+    @AllowNull(false)
     @Column(DataType.STRING)
     declare websiteDomain: string;
 

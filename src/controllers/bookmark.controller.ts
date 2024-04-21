@@ -17,10 +17,7 @@ const BookmarkController = {
         try {
             const user = (req as any).currentUser;
 
-            // Extract necessary data from the request body
             const { websiteName, websiteImage, websiteDomain } = req.body;
-
-            // Create the bookmark
             const bookmark = await Bookmark.create({
                 userId: user.id,
                 websiteName,
@@ -33,6 +30,19 @@ const BookmarkController = {
         } catch (error) {
             console.error(error);
             return res.status(500).json({ error: 'Internal Server Error' });
+        }
+    },
+    deleteBookmark: async (req: Request, res: Response) => {
+        try {
+            const bookmark = await Bookmark.destroy({ where: { id: req.params.id } })
+            if (!bookmark) {
+                res.send({ message: "Bookmark not found", id: req.params.id })
+                return
+            }
+            res.send({ message: "Bookmark successfully deleted" })
+        } catch (error) {
+            return res.status(500).json({ error: 'Internal Server Error' });
+
         }
     }
 };

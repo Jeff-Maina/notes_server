@@ -8,8 +8,10 @@ import {
     UpdatedAt,
     IsEmail,
     Length,
-    Is
+    Is,
+    HasMany
 } from 'sequelize-typescript'
+import Bookmark from './bookmark';
 
 
 @Table
@@ -25,11 +27,15 @@ class User extends Model {
     @Column(DataType.STRING)
     declare password: string;
 
+    @HasMany(() => Bookmark)
+    declare bookmarks: Bookmark[]
+
     @CreatedAt
     declare createdAt: Date;
 
     @UpdatedAt
     declare updatedAt: Date;
+
 }
 
 

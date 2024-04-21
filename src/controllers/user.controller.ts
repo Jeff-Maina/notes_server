@@ -11,13 +11,16 @@ const saltRounds = 10;
 
 const UserController = {
     getUsers: async (req: any, res: any) => {
-        const users = await User.findAll().then(users => {
-            console.log(users)
-        });
+        const users = await User.findAll()
         res.send(users)
     },
-    getOneUser: async (req: Request, res: Response) => {
-        res.send('hello from user one user')
+    getCurrentUser: async (req: Request, res: Response) => {
+        try {
+            const user = await User.findOne({ where: { email: req.body.email } });
+            res.json(user);
+        } catch (e) {
+            res.send({ message: "Error in Fetching user" });
+        }
     },
     createUser: async (req: Request, res: Response) => {
         const { password, email } = req.body

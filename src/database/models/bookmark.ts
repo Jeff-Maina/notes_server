@@ -7,9 +7,12 @@ import {
     UpdatedAt,
     ForeignKey,
     BelongsTo,
-    AllowNull
+    AllowNull,
+    BelongsToMany
 } from 'sequelize-typescript'
 import User from './user';
+import Tag from './tag';
+import BookmarkTag from './bookmarkTag';
 
 
 @Table
@@ -33,6 +36,11 @@ class Bookmark extends Model {
 
     @BelongsTo(() => User)
     declare user: User;
+
+    @BelongsToMany(() => Tag, () => BookmarkTag)
+    declare tags: Tag[]
+
+
 
     @CreatedAt
     declare createdAt: Date;
